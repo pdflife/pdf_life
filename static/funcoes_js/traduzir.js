@@ -109,7 +109,7 @@ function enviarArquivo() {
               clearInterval(intervalID); 
           }
       });
-  }, 1000);
+  }, 100);
     
 };
 
