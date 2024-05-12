@@ -163,7 +163,12 @@ def removendo():
     paginas_lista_str = paginas.split(',')
     paginas_lista_int = [int(numero_str) for numero_str in paginas_lista_str]
 
-    doc = remover(arquivo, paginas_lista_int)
+    pdf_bytes = arquivo.read()
+    doc = fitz.open("pdf", pdf_bytes) 
+    
+    for pagina in paginas_lista_int:
+        if 0 <= pagina < len(doc):
+            doc.delete_page(pagina - 1)
 
     caminho_arquivo = os.path.join(app.config['UPLOAD_FOLDER'],nome_arquivo)
     doc.save(caminho_arquivo)  
