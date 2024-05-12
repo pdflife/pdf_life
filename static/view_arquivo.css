@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+
+.hide{
+    display: none;
+}
+
+.reveal{
+    display: block;
+}
+
+.tentando{
+    padding-top:100px;
+}
+#janela{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;  
+}
+
+.campo h1{
+    font-size: 60px;
+    margin: 0 0;
+    padding-top: 30px;
+    font-family: "Play", sans-serif;
+    font-style: normal;
+}
+
+.campo p{
+    font-size: 30px;
+    margin: 0 0;
+    color: #4b4a4a;
+    font-family: "Play", sans-serif;
+    font-style: normal;
+}
+.choose{
+    box-shadow:8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.choose{
+    width:400px;
+    height: 100px;
+    font-size: 30px;
+    background: #3e9753;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor:pointer;
+    font-family: sans-serif;
+    border-radius: 15px;
+    outline: none;
+    margin:0 auto;
+}
+
+.choose:hover{
+    color:white;
+    background: #216130;
+}
+
+.choose:active{
+    color: turquoise;
+}
+
+.choose:focus{
+    color:white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+
+.unir{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.vizualizar_dois_arquivo{
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+}
+
+#primeiro_arquivo{
+    padding-left: 100px;
+}
+#segundo_arquivo{
+    padding-left: 100px;
+}
+
+#vizualizar_marca div{
+    display: flex;
+    align-items: flex-start;
+    padding-top: 30px;
+    gap: 30px;
+    margin:auto;
+    padding-left: 200px;
+}
+
+#tela{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    margin:auto;
+}
+
+#result{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+
+#downloadButton{
+    width:400px;
+    height: 100px;
+    font-size: 30px;
+    background: #3e9753;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor:pointer;
+    font-family: sans-serif;
+    border-radius: 15px;
+    outline: none;
+    margin:0 auto;
+    box-shadow:8px 8px 0 rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+#downloadButton:hover{
+    color:white;
+    background: #216130;
+}
+
+

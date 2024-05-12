@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Play", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #fef683b4; 
+}
+
+header {
+    background-color: #ffffff;
+    padding: 24px;
+    padding-left: 200px;
+    position:fixed;
+    z-index: 9999;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 300px;
+    
+}
+#name {
+    color: #f50d1a;
+    font-family: "Exo 2", sans-serif;
+    font-size: 35px;
+    font-weight: 400px;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+header a{
+    outline: none;
+    text-decoration: none;
+}
+
+
+.menu{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.menu h1{
+    font-size: 20px;
+    color: black;
+}
+

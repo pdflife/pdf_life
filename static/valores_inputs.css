@@ -1,0 +1,83 @@
+#preview{
+    margin: auto;
+}
+
+#valores_inputs {
+    height: 100vh; 
+    width: 400px;
+    right: 0;
+    background-color: #f9fe99;
+    position: fixed;
+    box-shadow: -8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+#valores_inputs div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+#valores_inputs p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:80%;
+}
+
+#funcao{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#valores_inputs input{
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+#valores_inputs button{
+    margin-top: 20px;
+    background-color: rgb(214, 17, 17);
+    width:300px;
+    height: 50px;
+    font-size: 20px;
+    color:white;
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+}
+#campos{
+    gap:15px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #333;
+    background-color: #fff; 
+    color: #333;
+}
+
+#check{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#valores_inputs button:hover {
+    background-color: #45a049;
+}
+
+#valores_inputs button:active {
+    background-color: #39803a; 
+}
+.tentando{
+    display: flex;
+}
+
+
+

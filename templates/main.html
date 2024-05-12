@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="text/css" href='/static/cabecalho.css' rel="stylesheet">
+<link type="text/css" href='/static/main.css' rel="stylesheet">
+<link type="text/css" href='/static/rodape.css' rel="stylesheet">
+<link type="text/css" href="/static/response.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="shortcut icon" type="image/jpg" href="/static/image/P.png">
+
+
+<title>PDF.Life - Ferramentas de  PDF</title>
+
+
+
+
+<body>
+
+    <header>
+        <a href="{{url_for('index')}}">
+            <h1 id="name">PDF.Life</h1>
+        </a>
+    
+        <div class="menu">
+            <a href="{{url_for('cortar')}}">
+                <div>
+                    <h1>Cortar</h1>
+                </div>
+            </a>
+    
+            <a href="{{url_for('extrair')}}">
+                <div>
+                    <h1>Extrair</h1>
+                </div>
+            </a>
+    
+            <a href="{{ url_for('traduzir_html') }}">
+                <div>
+                    <h1 class="blinking-text">Traduzir</h1>
+                </div>
+            </a>
+    
+            <a href="{{url_for('converter')}}">
+                <div>
+                    <h1>PDF p/ JPG</h1>
+                </div>
+            </a>
+        </div>
+    
+    </header>
+
+    
+    
+<div class="tentando">
+<div class="titulo">
+    <h1>Bem vindo ao PDF.Life</h1>
+    <h2>Use da nossa mais nova ferramenta de tradução, impulsionado assim os seus Estudos e Trabalho, juntamente com outras ferramentas à sua disposição. </h2>
+</div>
+
+
+<div class="container">
+    <a href="{{ url_for('traduzir_html') }}">
+    <div class="elemento">
+        <h1 class="blinking-text">Traduzir</h1>
+        <p>traduza arquivos pdf</p>
+    </div>
+    </a>
+</div>
+
+
+<section class='FlexContainer'>
+    <a href="{{url_for('remov')}}">
+        <div class="div1" >
+            <h1>Remover</h1>
+            <p>Remova páginas específicas do PDF</p>
+        </div>
+    </a>
+    <a href="{{url_for('cortar')}}">
+        <div class="div2">
+            <h1>Cortar</h1>
+            <p>Corte e remova uma determinada seção do PDF</p>
+        </div>
+    </a>
+    <a href="{{url_for('extrair')}}">
+        <div class="div3">
+            <h1>Extrair</h1>
+            <p>Extraia paginas do PDF</p>
+        </div>
+    </a>
+    <a href="{{url_for('unir')}}">
+        <div class="div4">
+            <h1>Unir</h1>
+            <p>Una 2 arquivos PDF em 1</p>
+        </div>
+    </a>
+    <a href="{{url_for('converter')}}">
+        <div class="div5">
+            <h1>PDF p/ JPG</h1>
+            <p>Conveterta as páginas PDF em Imagens</p>
+        </div>
+    </a>
+
+    <a href="{{ url_for('rotacionar') }}">
+        <div class="div6">
+            <h1>Rotação</h1>
+            <p>Rotacione as páginas</p>
+        </div>
+    </a>
+
+    <a href="{{url_for('mover')}}">
+        <div class="div7">
+            <h1>Mover</h1>
+            <p>Mova páginas do pdf, reorganizando-os</p>
+        </div>
+    </a>
+
+    <a href="{{url_for('marca_da_agua')}}">
+        <div class="div8">
+            <h1>Marca d'agua</h1>
+            <p>Insira a marca da água em arquivos PDF</p>
+        </div>
+    </a>
+
+    <a href="{{url_for('inverter')}}">
+        <div class="div9">
+            <h1>Inverter</h1>
+            <p>Inverta as páginas do arquivo pdf</p>
+        </div>
+    </a>
+
+    <a href="{{url_for('extrair_img')}}">
+        <div class="div10">
+            <h1>Extrair Imagens</h1>
+            <p>Extrair imagens presentes no arquivo PDF</p>
+        </div>
+    </a>
+
+    <a href="{{url_for('pagina_branca')}}">
+        <div class="div11">
+            <h1>Páginas Branca</h1>
+            <p>Adicione páginas em branco</p>
+        </div>
+    </a>
+
+    <a href="{{url_for('combinar_dois')}}">
+        <div class="div12">
+            <h1>Combinar Páginas</h1>
+            <p>Combine 2 paginas em 1</p>
+        </div>
+    </a>
+
+</section>
+
+<div class="mk">
+<h2><span id="mk_1">PDF.Life</span> para você que queira impulsionar a sua vida, nos seus 
+   <span id="mk_2">Estudos</span>  e <span id="mk_3">Trabalho</span>. Com uso rápido e prático que qualquer um pode usar de<span id="mk_4"> GRAÇA!</span> </h2>
+    <img src="{{ url_for('static', filename='image/icon.png') }}" alt="icon" height="500px">
+</div>
+
+</div>
+</body>
+
+<footer>
+
+    <div>
+    <p>Email: pdflifee@gmail.com</p>
+    <p>© 2024 PDF.Life</p>
+    </div>
+
+    <a href="{{url_for('index')}}">
+        <h1>PDF.Life</h1>
+    </a>
+
+</footer>
+</html>

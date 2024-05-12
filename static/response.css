@@ -1,0 +1,132 @@
+@media screen and (max-width: 1260px) {
+    header {
+        gap: 150px;        
+    }
+}
+
+@media screen and (max-width: 1160px){
+    header {
+        gap: 60px;        
+    }
+    .menu{
+        gap: 60px;
+    }
+   
+
+    .FlexContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .mk h2{
+        font-size: 25px;
+    }
+
+    .mk img{
+        height: 300px;
+    }
+
+    footer{
+        gap: 10%;
+    }
+}
+
+@media screen and (max-width: 720px){
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        padding-left: 0px;
+    }
+
+    .menu{
+        display: none;
+    }
+
+    .titulo h1{
+        font-size: 30px;
+    }
+    
+    .titulo h2{
+        font-size: 15px;
+        width: 400px;
+    }
+    
+    .container {
+        width: 150px;
+    }
+    
+
+    .elemento {
+        width: 200px; 
+        height: 66.67px; 
+    }
+    
+    .elemento h1 {
+        color: white; 
+        font-size: 20px;
+        padding-top: 10px;
+    }
+    
+    .elemento p {
+        color: white; 
+        font-size: 12px; 
+    }
+    
+    section{
+        height: 1000px;
+    }
+    
+    .FlexContainer {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        padding-top: 30px;
+    }
+    
+    
+    .FlexContainer div {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .FlexContainer h1 {
+        font-size: 15px;
+ 
+    }
+
+    .mk h2{
+        font-size: 15px;
+    }
+
+    .mk img{
+        height: 150px;
+    }
+
+    footer{
+        gap: 5%;
+    }
+    
+}
+
+@media screen and (max-width:480px){
+    
+    #downloadButton{
+        width:300px;
+        height: 75px;
+        font-size: 20px;
+    }
+    footer{
+        height: 150px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="text/css" href={{ url_for('static', filename='view_arquivo.css') }} rel="stylesheet">
+<link type="text/css" href='/static/cabecalho.css' rel="stylesheet">
+<link type="text/css" href='/static/valores_inputs.css' rel="stylesheet">
+<link type="text/css" href="/static/response.css" rel="stylesheet">
+
+<script type="text/javascript" src='/static/funcoes_js/traduzir.js' defer></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<link rel="shortcut icon" type="image/jpg" href="/static/image/P.png">
+
+<title>PDF.Life - Traduzir PDFs</title>
+
+</head>
+
+<body>
+    
+    <header>
+        <a href="{{url_for('index')}}">
+            <h1 id="name">PDF.Life</h1>
+        </a>
+    
+        <div class="menu">
+            <a href="{{url_for('cortar')}}">
+                <div>
+                    <h1>Cortar</h1>
+                </div>
+            </a>
+    
+            <a href="{{url_for('extrair')}}">
+                <div>
+                    <h1>Extrair</h1>
+                </div>
+            </a>
+    
+            <a href="{{ url_for('traduzir_html') }}">
+                <div>
+                    <h1 class="blinking-text">Traduzir</h1>
+                </div>
+            </a>
+    
+            <a href="{{url_for('converter')}}">
+                <div>
+                    <h1>PDF p/ JPG</h1>
+                </div>
+            </a>
+        </div>
+    
+    </header>
+
+
+<div class="tentando">
+
+    <div class='campo' id="janela">
+        <h1>Traduzir</h1>
+        <p>Traduza PDF</p>
+
+        <label class ='choose ' id="labelEsconder" for ="inputFile" tabIndex="0">
+            <input type="file" id="inputFile" style="display: none" accept="application/pdf" onchange="previewFile()">
+            <span>Escolha um pdf</span>
+        </label>
+    </div>
+
+    <div id="tela" style="display: none;">
+        <div id="result"></div>
+        <object type="application/pdf" data="" style="display: none" id="preview" width="630" height="500"></object> 
+    </div>
+
+
+    <div style="display: none" id="valores_inputs" class="center">
+        <div>
+        <p id="funcao">Traduzir</p>
+        <p>Escolha os Idiomas</p>
+        <label for="languageSelect">De</label>
+        <select name="language" id="languageSelect">
+        </select>
+
+        <label for="languageSelect_two">Para</label>
+        <select name="language" id="languageSelect_two">
+        </select>
+
+
+        <button id='botao' onclick="enviarArquivo()">Traduzir</button>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+<object type="text/html" data="/templates/teste.html"></object>
+
+</html>
