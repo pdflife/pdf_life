@@ -116,7 +116,7 @@
 @media screen and (max-width:480px){
     
     #downloadButton{
-        width:300px;
+        width:250px;
         height: 75px;
         font-size: 20px;
     }

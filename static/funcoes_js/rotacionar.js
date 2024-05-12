@@ -68,7 +68,11 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('nome_arquivo', nome_arquivo); 
   formData.append('paginas', paginas);
-  
+
+  document.getElementById('preview').style.display='none';
+  document.getElementById('valores_inputs').style.display='none';
+  document.getElementById('loader').style.display='block';
+
   $.ajax({
     url:'/rotacionando',
     type:'POST',

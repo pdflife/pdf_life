@@ -6,7 +6,6 @@ const input = document.querySelector('#inputFile')
 input.addEventListener('change', function(){
   nome_arquivo = input.files[0].name;
   document.getElementById('preview').style.display= 'block';
-  document.getElementById('tela').style.display= 'block';
   document.getElementById("botao").style.display = 'block';
   document.getElementById('janela').style.display = 'none';
   document.getElementById('valores_inputs').style.display = 'block';
@@ -21,10 +20,6 @@ function previewFile(){
   document.getElementById("inputFile").style.display = 'none';
 }
 
-function atualizarProgresso(progress) {
-  document.getElementById("result").innerHTML = "Carregando... " + progress + "%";
-}
-
 function aoSelecionarInput (event) {
   const inputClicado = event.target
 
@@ -35,6 +30,9 @@ function aoSelecionarInput (event) {
   inputClicado.addEventListener('click', removeSelecao, { once: true })
 }
 
+function atualizarProgresso(progress) {
+  document.getElementById("result").innerHTML = "Carregando... " + progress + "%";
+}
 
 function enviarArquivo() {
   var input = document.getElementById("inputFile");
@@ -65,7 +63,13 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('nome_arquivo', nome_arquivo); 
   formData.append('paginas', paginas);
-  
+
+  document.getElementById('preview').style.display='none';
+  document.getElementById('valores_inputs').style.display='none';
+  document.getElementById('loader').style.display='block';
+
+  verificarProgresso();
+
   $.ajax({
     url:'/convertendo',
     type:'POST',
@@ -73,34 +77,12 @@ function enviarArquivo() {
     contentType: false, 
     data: formData, 
     success: function(response){
-      //ocultar botao
-      document.getElementById("botao").style.display = 'none';
-
       var blob = new Blob([response])
       var url = URL.createObjectURL(blob)
       ultimoelemento = url.split('/').pop();
       final(ultimoelemento);
     }
     });
-
-    
-    var intervalID = setInterval(() => {
-      $.ajax({
-          url: '/contagem', 
-          type: 'GET',
-          success: function(progresso) {              
-              atualizarProgresso(progresso);
-              if (progresso === "100") {
-                  clearInterval(intervalID);
-                  document.getElementById('result').innerHTML=""
-              }
-          },
-          error: function(xhr, status, error) {
-              console.error('Erro ao buscar o progresso:', error);
-              clearInterval(intervalID); 
-          }
-      });
-  }, 100);    
 };
 
 
@@ -111,5 +93,22 @@ function final(ultimoelemento){
   .then(response =>{
     window.location.href = 'visualizar_pasta' + '/' + ultimoelemento
   })
-}
+};
 
+
+function verificarProgresso() {
+  $.ajax({
+      url: '/progresso',
+      type: 'GET',
+      success: function(response) {
+          var progresso = response.progresso;
+          atualizarProgresso(progresso);
+          
+          // Verifica novamente o progresso após um curto intervalo de tempo
+          setTimeout(verificarProgresso, 1000);
+      },
+      error: function(xhr, status, error) {
+          console.error('Erro ao verificar o progresso:', error);
+      }
+  });
+};

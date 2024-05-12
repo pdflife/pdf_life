@@ -73,10 +73,6 @@ function confirmation(){
 }
 
 
-function atualizarProgresso(progress) {
-  document.getElementById("result").innerHTML = "Carregando... " + progress + "%";
-}
-
 function enviarArquivo() {
   var input = document.getElementById("inputFile");
   var input_image = document.getElementById('inputImage')
@@ -96,6 +92,10 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('image', image);
   formData.append('nome_arquivo', nome_arquivo); 
+
+  document.getElementById('vizualizar_marca').style.display='none';
+  document.getElementById('valores_inputs').style.display='none';
+  document.getElementById('loader').style.display='block';
   
   $.ajax({
     url:'/marcando',
@@ -104,8 +104,6 @@ function enviarArquivo() {
     contentType: false, 
     data: formData, 
     success: function(response){
-      document.getElementById("botao").style.display = 'none';
-
       var blob = new Blob([response])
       var url = URL.createObjectURL(blob)
       ultimoelemento = url.split('/').pop();

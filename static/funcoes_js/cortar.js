@@ -45,6 +45,10 @@ function enviarArquivo() {
   formData.append('de', de);
   formData.append('ate', ate);
   
+  document.getElementById('preview').style.display='none';
+  document.getElementById('valores_inputs').style.display='none';
+  document.getElementById('loader').style.display='block';
+
   $.ajax({
     url:'/cortando',
     type:'POST',

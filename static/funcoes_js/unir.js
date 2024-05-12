@@ -46,9 +46,7 @@ function previewFile_two(){
   document.getElementById("inputFile_two").style.display = 'none';
 }
 
-function atualizarProgresso(progress) {
-  document.getElementById("result").innerHTML = "Carregando... " + progress + "%";
-}
+
 
 function enviarArquivo() {
   var input = document.getElementById("inputFile");
@@ -74,6 +72,10 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('file_two', file_two);
   formData.append('nome_arquivo', nome_arquivo); 
+
+  document.getElementById('vizualizar_dois_arquivo').style.display='none';
+  document.getElementById('valores_inputs').style.display='none';
+  document.getElementById('loader').style.display='block';
   
   $.ajax({
     url:'/unindo',
@@ -82,8 +84,6 @@ function enviarArquivo() {
     contentType: false, 
     data: formData, 
     success: function(response){
-      document.getElementById("botao").style.display = 'none';
-
       var blob = new Blob([response])
       var url = URL.createObjectURL(blob)
       ultimoelemento = url.split('/').pop();

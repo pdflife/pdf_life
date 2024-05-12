@@ -19,10 +19,6 @@ function previewFile(){
   document.getElementById("inputFile").style.display = 'none';
 }
 
-function atualizarProgresso(progress) {
-  document.getElementById("result").innerHTML = "Carregando... " + progress + "%";
-}
-
 function enviarArquivo() {
   var input = document.getElementById("inputFile");
   
@@ -40,6 +36,10 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('nome_arquivo', nome_arquivo); 
   formData.append('paginas', paginas);
+
+  document.getElementById('preview').style.display='none';
+  document.getElementById('valores_inputs').style.display='none';
+  document.getElementById('loader').style.display='block';
   
   $.ajax({
     url:'/adicionando_pag_branca',
@@ -48,8 +48,6 @@ function enviarArquivo() {
     contentType: false, 
     data: formData, 
     success: function(response){
-      document.getElementById("botao").style.display = 'none';
-
       var blob = new Blob([response])
       var url = URL.createObjectURL(blob)
       ultimoelemento = url.split('/').pop();
