@@ -73,6 +73,8 @@ def traduzindo():
     doc = fitz.open("pdf", pdf_bytes)
     doc_novo = fitz.open()
     n = 0
+    global progress
+    progress = 0
     for page in doc:
         nova_pagina = doc_novo._newPage(width=page.rect.width, height=page.rect.height)       
 
@@ -115,7 +117,6 @@ def traduzindo():
                             nova_pagina.insert_text(origin, traduzido, fontname=fonte, fontsize=fsize )  
 
         n += 1
-        global progress
         progress = str(int((n*100)/len(doc)))
         progresso()
 
@@ -206,7 +207,7 @@ def converter():
 def convert():
 
     global progress
-    progress = "0"
+    progress = 0
     arquivo = request.files['file']
     nome_arquivo = request.form['nome_arquivo']
     paginas = request.form['paginas']
