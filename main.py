@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_file
+from flask import Flask, request, render_template, send_file, jsonify
 import os
 import time
 import fitz
@@ -25,6 +25,9 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+global progress
+progress = 0
+
 def delete_file(filename):
     time.sleep(100) 
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
@@ -42,14 +45,16 @@ def delete_file(filename):
 def index():
     return render_template('main.html')
 
-@app.route('/contagem', methods=['GET'])
-def contagem():
-    def contando():
-        try:
-            yield progress
-        except NameError:
-            return
-    return app.response_class(contando(), mimetype='text/event-stream')
+
+@app.route('/progresso', methods=['GET'])
+def progresso():
+
+    # Aqui você pode gerar o progresso da sua tarefa
+    progresso = progress
+
+    # Retorna o progresso como JSON
+    return jsonify({'progresso': progresso})
+
 
 @app.route('/traduzir')
 def traduzir_html():
@@ -112,7 +117,7 @@ def traduzindo():
         n += 1
         global progress
         progress = str(int((n*100)/len(doc)))
-        contagem()
+        progresso()
 
     nome_arquivo = "traduzido.pdf"
 
@@ -230,7 +235,7 @@ def convert():
         imagem.save(caminho_imagem)
         
         progress = str(int(((index) / len(doc)) * 100))
-        contagem()
+        progresso()
 
     threading.Thread(target=delete_file, args=(nome_arquivo,)).start()
     

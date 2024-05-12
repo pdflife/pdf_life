@@ -73,11 +73,17 @@
         </label>
     </div>
 
-    <div id="tela" style="display: none;">
+    <div id="loader" style="display: none;">
+        <div class="loader"></div>
         <div id="result"></div>
-        <object type="application/pdf" data="" style="display: none" id="preview" width="630" height="500"></object> 
     </div>
-
+    
+    <object type="application/pdf" data="" style="display: none" id="preview" width="630" height="500"></object> 
+    
+    <script >
+        var minha_variavel_js = "{{ minha_variavel }}";
+        console.log(minha_variavel_js); // Saída: Olá do Python!
+    </script>
 
     <div style="display: none" id="valores_inputs" class="center">
         <div>
