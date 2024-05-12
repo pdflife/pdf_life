@@ -6,6 +6,7 @@ const input = document.querySelector('#inputFile')
 input.addEventListener('change', function(){
   nome_arquivo = input.files[0].name;
   document.getElementById('preview').style.display= 'block';
+  document.getElementById('tela').style.display= 'block';
   document.getElementById("botao").style.display = 'block';
   document.getElementById('janela').style.display = 'none';
   document.getElementById('valores_inputs').style.display = 'block';
@@ -55,11 +56,8 @@ function enviarArquivo() {
       document.getElementById("botao").style.display = 'none';
 
       var blob = new Blob([response])
-      console.log(blob)
       var url = URL.createObjectURL(blob)
-      console.log(url)
       ultimoelemento = url.split('/').pop();
-      console.log(ultimoelemento);
       final(ultimoelemento);
     }
     });

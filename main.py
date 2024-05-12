@@ -32,10 +32,8 @@ def delete_file(filename):
     try:
         if os.path.isfile(filepath):
             os.remove(filepath)
-            print(f"Arquivo {filename} excluído com sucesso.")
         elif os.path.isdir(filepath):
             shutil.rmtree(filepath)
-            print(f"Pasta {filename} excluída com sucesso.")
 
     except Exception as e:
         return e

@@ -1,10 +1,10 @@
 
 document.getElementById('downloadButton').style.display = 'block';
+baixarPDF();
 
 function baixarPDF() {
   nome_arquivo = localStorage.getItem('name')
   nome_arquivo = nome_arquivo.replace('.pdf', '');
-  console.log(nome_arquivo)
   var formData = new FormData();
   formData.append('name_file', nome_arquivo);
 

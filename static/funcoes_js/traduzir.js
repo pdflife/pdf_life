@@ -87,11 +87,8 @@ function enviarArquivo() {
     data: formData,  
     success: function(response){
       var blob = new Blob([response])
-      console.log(blob)
       var url = URL.createObjectURL(blob)
-      console.log(url)
       ultimoelemento = url.split('/').pop();
-      console.log(ultimoelemento);
       final(ultimoelemento);
     }
     });

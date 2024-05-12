@@ -51,11 +51,8 @@ function enviarArquivo() {
       document.getElementById("botao").style.display = 'none';
 
       var blob = new Blob([response])
-      console.log(blob)
       var url = URL.createObjectURL(blob)
-      console.log(url)
       ultimoelemento = url.split('/').pop();
-      console.log(ultimoelemento);
       final(ultimoelemento);
     }
     });    
