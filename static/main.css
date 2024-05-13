@@ -14,7 +14,7 @@
 .titulo h2{
     font-size: 25px;
     color: #47474f;
-    padding: 0 200px;
+    margin: 0 10%;
 }
 
 .container {
@@ -155,6 +155,17 @@ section{
     left: 20px;
     padding-right: 30px;
     color: #47474f;
+}
+
+#versiculo{
+    padding: 0 15%;
+    font-size: 30px;
+}
+#localizacao{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    padding-bottom: 50px;
 }
 
 .mk{
