@@ -105,7 +105,7 @@ function verificarProgresso() {
           atualizarProgresso(progresso);
           
           // Verifica novamente o progresso após um curto intervalo de tempo
-          setTimeout(verificarProgresso, 1000);
+          setTimeout(verificarProgresso, 3000);
       },
       error: function(xhr, status, error) {
           console.error('Erro ao verificar o progresso:', error);
