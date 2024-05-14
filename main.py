@@ -219,19 +219,47 @@ def convert():
         nome_arquivo = nome_arquivo
 
     if (todo_doc == 0):
-        doc = convertendo(arquivo, todo_doc)
+        pdf_bytes= arquivo.read()
+        doc = fitz.open("pdf", pdf_bytes)  
+        l = []
+        if todo_doc == 0:
+            for pag in range(len(doc)):
+                page = doc.load_page(pag)
+                pix = page.get_pixmap()  
+                l.append(pix)
+
+        else:
+            for pagina in todo_doc: 
+                if 0 <= pagina < len(doc):  
+                    page = doc.load_page(pagina-1)
+                    pix = page.get_pixmap() 
+                    l.append(pix)
     else:
         paginas_lista_str = paginas.split(',')
         paginas_lista_int = [int(numero_str) for numero_str in paginas_lista_str]
 
-        doc = convertendo(arquivo, paginas_lista_int)
+        pdf_bytes= arquivo.read()
+        doc = fitz.open("pdf", pdf_bytes)  
+        l = []
+        if paginas_lista_int == 0:
+            for pag in range(len(doc)):
+                page = doc.load_page(pag)
+                pix = page.get_pixmap()  
+                l.append(pix)
+
+        else:
+            for pagina in paginas_lista_int: 
+                if 0 <= pagina < len(doc):  
+                    page = doc.load_page(pagina-1)
+                    pix = page.get_pixmap() 
+                    l.append(pix)
 
     nova_subpasta_path = os.path.join(app.config['UPLOAD_FOLDER'],  nome_arquivo)
 
     if not os.path.exists(nova_subpasta_path):
         os.makedirs(nova_subpasta_path) 
 
-    for index, imagem in enumerate(doc):
+    for index, imagem in enumerate(l):
         caminho_imagem = os.path.join(nova_subpasta_path, f"page-{index + 1}.png")
         imagem.save(caminho_imagem)
         
