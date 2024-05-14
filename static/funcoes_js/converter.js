@@ -45,6 +45,7 @@ function enviarArquivo() {
     return;
   } 
   
+  /*
   if (todo_doc[0].checked) {
       const valor = todo_doc[0].value;
       formData.append('todo_doc', 0);
@@ -52,7 +53,7 @@ function enviarArquivo() {
   if(!todo_doc[0].checked){
       formData.append('todo_doc', 1);
     }
-  
+  */
   
   const file = inputFile.files[0];
   const nome_arquivo = inputFile.files[0].name;
@@ -63,6 +64,7 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('nome_arquivo', nome_arquivo); 
   formData.append('paginas', paginas);
+  formData.append('todo_doc', 1);
 
   document.getElementById('preview').style.display='none';
   document.getElementById('valores_inputs').style.display='none';
