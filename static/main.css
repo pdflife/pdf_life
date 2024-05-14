@@ -9,12 +9,14 @@
 
 .titulo h1{
     font-size: 60px;
+    margin: 0 0;
 }
 
 .titulo h2{
     font-size: 25px;
     color: #47474f;
-    margin: 0 10%;
+    width: 1000px;
+    
 }
 
 .container {
@@ -165,9 +167,15 @@ section{
     display: flex;
     justify-content: center;
     font-size: 30px;
-    padding-bottom: 50px;
 }
-
+#versiculo p {
+    margin: 0px 0px;
+    padding-top: 50px;
+}
+#localizacao p {
+    margin: 0px 0px;
+    padding-top: 20px;
+}
 .mk{
     display: flex;
     align-items: center;

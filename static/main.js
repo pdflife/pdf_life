@@ -37,7 +37,7 @@ function exibirVersiculoAleatorio(versiculos) {
     var versiculoAleatorio = versiculos[indice].versiculo;
     var localizacaoAleatoria = versiculos[indice].localizacao;
     // Exibe o versículo e a localização na página HTML
-    document.getElementById("versiculo").innerHTML = "<p>" + versiculoAleatorio + "</p>";
+    document.getElementById("versiculo").innerHTML = "<p>" +'"'+ versiculoAleatorio +'"'+ "</p>";
     document.getElementById("localizacao").innerHTML = "<p>" + localizacaoAleatoria + "</p>";
 }
 

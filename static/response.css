@@ -11,6 +11,11 @@
     .menu{
         gap: 60px;
     }
+
+    .titulo h2{
+        width: auto;
+        margin: 0 80px;
+    }
    
 
     .FlexContainer {
