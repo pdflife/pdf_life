@@ -24,9 +24,6 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-os.environ['NO_PROXY'] = '127.0.0.1'
-# Desativa o cache de módulos do Python
-os.environ['PYTHONUNBUFFERED'] = '1'
 
 global progress
 progress = 0
@@ -57,7 +54,8 @@ def progresso():
 
     # Retorna o progresso como JSON
     return jsonify({'progresso': progresso})
-    
+
+
 @app.route('/traduzir')
 def traduzir_html():
     return render_template('funcoes/traduzir.html')
@@ -211,8 +209,7 @@ def convert():
     global progress
     progress = 0
     arquivo = request.files['file']
-    #nome_arquivo = request.form['nome_arquivo']
-    nome_arquivo = 'pdf_life_imagens'
+    nome_arquivo = request.form['nome_arquivo']
     paginas = request.form['paginas']
     todo_doc = int(request.form['todo_doc'])
 
@@ -222,12 +219,24 @@ def convert():
         nome_arquivo = nome_arquivo
 
     if (todo_doc == 0):
-        convertendo(arquivo, todo_doc)
+        doc = convertendo(arquivo, todo_doc)
     else:
         paginas_lista_str = paginas.split(',')
         paginas_lista_int = [int(numero_str) for numero_str in paginas_lista_str]
 
-        convertendo(arquivo, paginas_lista_int) 
+        doc = convertendo(arquivo, paginas_lista_int)
+
+    nova_subpasta_path = os.path.join(app.config['UPLOAD_FOLDER'],  nome_arquivo)
+
+    if not os.path.exists(nova_subpasta_path):
+        os.makedirs(nova_subpasta_path) 
+
+    for index, imagem in enumerate(doc):
+        caminho_imagem = os.path.join(nova_subpasta_path, f"page-{index + 1}.png")
+        imagem.save(caminho_imagem)
+        
+        progress = str(int(((index) / len(doc)) * 100))
+        progresso()
 
     threading.Thread(target=delete_file, args=(nome_arquivo,)).start()
     
