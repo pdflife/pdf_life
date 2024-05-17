@@ -54,8 +54,7 @@ def progresso():
 
     # Retorna o progresso como JSON
     return jsonify({'progresso': progresso})
-
-
+    
 @app.route('/traduzir')
 def traduzir_html():
     return render_template('funcoes/traduzir.html')
@@ -209,7 +208,8 @@ def convert():
     global progress
     progress = 0
     arquivo = request.files['file']
-    nome_arquivo = request.form['nome_arquivo']
+    #nome_arquivo = request.form['nome_arquivo']
+    nome_arquivo = 'pdf_life_imagens'
     paginas = request.form['paginas']
     todo_doc = int(request.form['todo_doc'])
 
@@ -219,24 +219,13 @@ def convert():
         nome_arquivo = nome_arquivo
 
     if (todo_doc == 0):
-        doc = convertendo(arquivo, todo_doc)
+        print(todo_doc)
+        convertendo(arquivo, todo_doc)
     else:
         paginas_lista_str = paginas.split(',')
         paginas_lista_int = [int(numero_str) for numero_str in paginas_lista_str]
 
-        doc = convertendo(arquivo, paginas_lista_int)
-
-    nova_subpasta_path = os.path.join(app.config['UPLOAD_FOLDER'],  nome_arquivo)
-
-    if not os.path.exists(nova_subpasta_path):
-        os.makedirs(nova_subpasta_path) 
-
-    for index, imagem in enumerate(doc):
-        caminho_imagem = os.path.join(nova_subpasta_path, f"page-{index + 1}.png")
-        imagem.save(caminho_imagem)
-        
-        progress = str(int(((index) / len(doc)) * 100))
-        progresso()
+        convertendo(arquivo, paginas_lista_int) 
 
     threading.Thread(target=delete_file, args=(nome_arquivo,)).start()
     
