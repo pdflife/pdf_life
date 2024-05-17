@@ -25,6 +25,8 @@ app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.environ['NO_PROXY'] = '127.0.0.1'
+# Desativa o cache de módulos do Python
+os.environ['PYTHONUNBUFFERED'] = '1'
 
 global progress
 progress = 0
@@ -220,7 +222,6 @@ def convert():
         nome_arquivo = nome_arquivo
 
     if (todo_doc == 0):
-        print(todo_doc)
         convertendo(arquivo, todo_doc)
     else:
         paginas_lista_str = paginas.split(',')
