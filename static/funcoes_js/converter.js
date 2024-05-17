@@ -45,7 +45,7 @@ function enviarArquivo() {
     return;
   } 
   
-  /*
+  
   if (todo_doc[0].checked) {
       const valor = todo_doc[0].value;
       formData.append('todo_doc', 0);
@@ -53,7 +53,7 @@ function enviarArquivo() {
   if(!todo_doc[0].checked){
       formData.append('todo_doc', 1);
     }
-  */
+  
   
   const file = inputFile.files[0];
   const nome_arquivo = inputFile.files[0].name;
@@ -64,13 +64,11 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('nome_arquivo', nome_arquivo); 
   formData.append('paginas', paginas);
-  formData.append('todo_doc', 1);
 
   document.getElementById('preview').style.display='none';
   document.getElementById('valores_inputs').style.display='none';
   document.getElementById('loader').style.display='block';
 
-  verificarProgresso();
 
   $.ajax({
     url:'/convertendo',
@@ -97,20 +95,3 @@ function final(ultimoelemento){
   })
 };
 
-
-function verificarProgresso() {
-  $.ajax({
-      url: '/progresso',
-      type: 'GET',
-      success: function(response) {
-          var progresso = response.progresso;
-          atualizarProgresso(progresso);
-          
-          // Verifica novamente o progresso após um curto intervalo de tempo
-          setTimeout(verificarProgresso, 3000);
-      },
-      error: function(xhr, status, error) {
-          console.error('Erro ao verificar o progresso:', error);
-      }
-  });
-};
