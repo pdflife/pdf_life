@@ -45,7 +45,7 @@ function enviarArquivo() {
     return;
   } 
   
-  /*
+  
   if (todo_doc[0].checked) {
       const valor = todo_doc[0].value;
       formData.append('todo_doc', 0);
@@ -53,7 +53,7 @@ function enviarArquivo() {
   if(!todo_doc[0].checked){
       formData.append('todo_doc', 1);
     }
-  */
+  
   
   const file = inputFile.files[0];
   const nome_arquivo = inputFile.files[0].name;
