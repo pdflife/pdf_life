@@ -90,6 +90,7 @@ function enviarArquivo() {
     processData: false, 
     contentType: false, 
     data: formData,  
+    timeout: 3600000, // 1 hora em milissegundos
     success: function(response){
       var blob = new Blob([response])
       var url = URL.createObjectURL(blob)
@@ -113,6 +114,7 @@ function verificarProgresso() {
   $.ajax({
       url: '/progresso',
       type: 'GET',
+      timeout: 3600000, // 1 hora em milissegundos
       success: function(response) {
           var progresso = response.progresso;
           atualizarProgresso(progresso);
