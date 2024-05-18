@@ -29,7 +29,7 @@ global progress
 progress = 0
 
 def delete_file(filename):
-    time.sleep(100) 
+    time.sleep(180) 
     filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     
     try:
