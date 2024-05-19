@@ -114,7 +114,6 @@ def traduzindo():
 
         n += 1
         progress = str(int((n*100)/len(doc)))
-        progresso()
 
     nome_arquivo = "traduzido.pdf"
 
