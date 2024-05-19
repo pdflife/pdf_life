@@ -60,10 +60,6 @@ def progresso():
 def traduzir_html():
     return render_template('funcoes/traduzir.html')
 
-@app.route('/teste')
-def teste():
-    return render_template('teste.html')
-
 @app.route('/traduzindo', methods=['POST'])
 def traduzindo():
     arquivo = request.files['file']
