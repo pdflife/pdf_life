@@ -5,7 +5,6 @@ baixarPDF();
 function baixarPDF() {
   nome_arquivo = localStorage.getItem('name')
   nome_arquivo = nome_arquivo.replace('.pdf', '');
-  nome_arquivo = 'pdf_life_imagens'
   var formData = new FormData();
   formData.append('name_file', nome_arquivo);
 
