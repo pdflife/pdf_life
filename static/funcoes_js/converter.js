@@ -64,7 +64,6 @@ function enviarArquivo() {
   formData.append('file', file); 
   formData.append('nome_arquivo', nome_arquivo); 
   formData.append('paginas', paginas);
-  formData.append('todo_doc', 1);
 
   document.getElementById('preview').style.display='none';
   document.getElementById('valores_inputs').style.display='none';
@@ -97,10 +96,9 @@ function final(ultimoelemento){
   })
 };
 
-
 function verificarProgresso() {
   $.ajax({
-      url: '/progresso',
+      url: '/progresso_convert',
       type: 'GET',
       success: function(response) {
           var progresso = response.progresso;
@@ -114,3 +112,4 @@ function verificarProgresso() {
       }
   });
 };
+

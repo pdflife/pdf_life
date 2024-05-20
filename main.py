@@ -6,7 +6,7 @@ import shutil
 import threading
 from zipfile import ZipFile
 
-from funcoes.traduzir_google import traduzir_texto
+from funcoes.traduzir_google import traduzindo_cod
 from funcoes.rotacao import rotacao
 from funcoes.remover import remover
 from funcoes.cortar import cortando
@@ -19,11 +19,15 @@ from funcoes.mover import mover_paginas
 from funcoes.marca_da_agua import marcando_agua
 from funcoes.extrair_imagens import extract_images_from_pdf
 from funcoes.unir import unindo_pdf
+from funcoes import progresso
+from funcoes import progresso_convert
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+# Desativa o cache de módulos do Python
+os.environ['PYTHONUNBUFFERED'] = '1'
 
 global progress
 progress = 0
@@ -47,15 +51,20 @@ def index():
 
 
 @app.route('/progresso', methods=['GET'])
-def progresso():
+def progressoo():
+    pr = progresso.env()
+    # Retorna o progresso como JSON
+    return jsonify({'progresso': pr})
+
+@app.route('/progresso_convert', methods=['GET'])
+def progresso_conv():
 
     # Aqui você pode gerar o progresso da sua tarefa
-    progresso = progress
+    pr = progresso_convert.env()
 
     # Retorna o progresso como JSON
-    return jsonify({'progresso': progresso})
-
-
+    return jsonify({'progresso': pr})
+    
 @app.route('/traduzir')
 def traduzir_html():
     return render_template('funcoes/traduzir.html')
@@ -65,55 +74,8 @@ def traduzindo():
     arquivo = request.files['file']
     de = request.form['De']
     para = request.form['Para']
-    pdf_bytes = arquivo.read()
-    doc = fitz.open("pdf", pdf_bytes)
-    doc_novo = fitz.open()
-    n = 0
-    global progress
-    progress = 0
-    for page in doc:
-        nova_pagina = doc_novo._newPage(width=page.rect.width, height=page.rect.height)       
 
-        if page.get_text("dict")["blocks"]==[]:
-            new = doc.load_page(n)
-            if new.get_images():
-                a = new.get_image_info(xrefs=True)
-                b=a[0]['xref']
-                bbox = a[0]["bbox"]
-        
-                imagem = doc.extract_image(b)
-                bytes_imagem = imagem['image']
-                rect = fitz.Rect(bbox)
-                nova_pagina.insert_image(rect, stream = bytes_imagem)
-
-
-        else:
-            for type in page.get_text("dict")["blocks"]:
-
-                if type["type"] == 1:
-                    # Obter os bytes da imagem
-                    image_bytes = type["image"]
-                    
-                    ponto = fitz.Rect(type["bbox"])
-                    nova_pagina.insert_image(ponto, stream = image_bytes)
-                                
-                elif type["type"] == 0:
-                    for linhas in type["lines"]:
-                        for span in linhas["spans"]:
-                            fsize = span["size"]
-                            origin = fitz.Point(span["origin"])
-                            rect = fitz.Rect(span["bbox"]) 
-                            flags = span["flags"]
-                            fonte = "times-roman"
-                            text = span["text"]
-                            color = span["color"]
-                            
-                            traduzido  = traduzir_texto(text, de, para)
-                            
-                            nova_pagina.insert_text(origin, traduzido, fontname=fonte, fontsize=fsize )  
-
-        n += 1
-        progress = str(int((n*100)/len(doc)))
+    doc_novo = traduzindo_cod(arquivo, de, para)
 
     nome_arquivo = "traduzido.pdf"
 
@@ -204,7 +166,8 @@ def convert():
     global progress
     progress = 0
     arquivo = request.files['file']
-    nome_arquivo = request.form['nome_arquivo']
+    #nome_arquivo = request.form['nome_arquivo']
+    nome_arquivo = 'pdf_life_imagens'
     paginas = request.form['paginas']
     todo_doc = int(request.form['todo_doc'])
 
@@ -214,24 +177,12 @@ def convert():
         nome_arquivo = nome_arquivo
 
     if (todo_doc == 0):
-        doc = convertendo(arquivo, todo_doc)
+        convertendo(arquivo, todo_doc)
     else:
         paginas_lista_str = paginas.split(',')
         paginas_lista_int = [int(numero_str) for numero_str in paginas_lista_str]
 
-        doc = convertendo(arquivo, paginas_lista_int)
-
-    nova_subpasta_path = os.path.join(app.config['UPLOAD_FOLDER'],  nome_arquivo)
-
-    if not os.path.exists(nova_subpasta_path):
-        os.makedirs(nova_subpasta_path) 
-
-    for index, imagem in enumerate(doc):
-        caminho_imagem = os.path.join(nova_subpasta_path, f"page-{index + 1}.png")
-        imagem.save(caminho_imagem)
-        
-        progress = str(int(((index) / len(doc)) * 100))
-        progresso()
+        convertendo(arquivo, paginas_lista_int) 
 
     threading.Thread(target=delete_file, args=(nome_arquivo,)).start()
     
