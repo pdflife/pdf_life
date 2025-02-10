@@ -1,5 +1,16 @@
 ## Website for PDF file manipulation with Python
-you can: 
+*Install library 
+
+Flask; py -m pip install flask
+
+Pymupdf: py -m pip install pymupdf
+
+Deep-translator: py -m pip install deep-translator
+
+Pillow: py -m pip install Pillow
+
+
+## Functions
 - remove pages
 - cut pages
 - merge pages
